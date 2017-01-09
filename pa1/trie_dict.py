@@ -2,7 +2,7 @@
 #
 # usage: python trie_dict.py <dictionary filename>
 #
-# YOUR NAME HERE
+# Shrabya Timsina
 
 import os
 import sys
