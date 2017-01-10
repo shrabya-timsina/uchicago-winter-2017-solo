@@ -4,7 +4,7 @@
 #
 # YOUR NAME HERE
 
-from trie_dict import create_trie_node, add_word, is_word, num_completions, get_completions, get_to_prefix_node
+from trie_dict import create_trie_node, add_word, is_word, num_completions, get_completions, get_to_prefix_node, complete_prefix
 
 t = create_trie_node()
 add_word("a", t)

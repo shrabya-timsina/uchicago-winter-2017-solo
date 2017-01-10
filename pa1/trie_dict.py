@@ -75,11 +75,42 @@ def get_to_prefix_node(word, trie):
 
     return get_to_prefix_node(word[1:], trie[word[0]])
 
-def complete_prefix(prefix):
+def complete_prefix(trie):
 
-    letters_only = {letter: prefix[letter] for k in ('l', 'm', 'n')}
     
-    for letter in prefix.keys():
+
+
+    if trie['final'] == True:
+        return [""]
+
+    else:
+        completions_list = []
+        
+        
+        exclude_keys = ['count', 'final']
+        letters = [key for key in trie.keys() if key not in exclude_keys]
+
+        for letter in letters:
+            suffix = ""
+            suffix = suffix + letter + complete_prefix(trie[letter])[0]
+            #print(suffix)
+            completions_list.append(suffix)
+            suffix = ""
+
+    
+    return completions_list
+
+
+
+
+
+
+   
+
+
+    #letters_only = {letter: prefix[letter] for k in ('l', 'm', 'n')}
+    
+    #for letter in prefix.keys():
 
 
 
