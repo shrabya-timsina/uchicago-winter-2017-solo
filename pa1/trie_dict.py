@@ -15,12 +15,19 @@ import string
 import trie_shell
 
 def create_trie_node():
-    # replace None with an appropriate value
+    """
+    creates a new node for a trie
+    returns: a dictionary with keys 'count' and 'final'
+    """
     return {'count': 0, 'final' : False }
 
 def add_word(word, trie):
-    # replace pass with your code
-    
+
+    """
+    adds a word to a given trie
+    inputs: word - a string which contains the word to be added
+            trie - a dictionary to which the word is added
+    """
     trie['count'] += 1
 
     if word[0] not in trie: 
@@ -37,8 +44,14 @@ def add_word(word, trie):
     
 
 def is_word(word, trie):
-    # replace False with an appropriate value
-    
+    """
+    verifies if given word is a complete word in the given trie
+    inputs: word - a string which contains the word to be verified
+            trie - a dictionary to search through for given word
+
+    returns - a boolean - stating whether the word is a complete word
+    """ 
+
     if not word:
         return False
 
@@ -70,14 +83,18 @@ def get_completions(word, trie):
     # replace [] with an appropriate value
     prefix_trie = get_to_prefix_node(word, trie)
 
-    return complete_prefix(prefix_trie)
+    if prefix_trie == None: #if prefix not in dictionary
+        return []
+
+    else:
+        return complete_prefix(prefix_trie)
 
   
     
 
 def get_to_prefix_node(word, trie):
     
-    if not word: #check for empty prefix
+    if not word: #check for empty string prefix
         return trie
 
     if word[0] not in trie:
@@ -91,7 +108,6 @@ def get_to_prefix_node(word, trie):
 
 def complete_prefix(trie):
    
-
 
     if trie['final'] == True and trie['count'] == 1:
         return [""]
@@ -107,39 +123,13 @@ def complete_prefix(trie):
             completions_list.append("") 
         
         for letter in letters:
-            
-            #if trie[letter]['count'] > 1 and trie[letter]['final'] == True:
-                #completions_list.append(letter)
-
+       
             for leaf in complete_prefix(trie[letter]):
 
                 completions_list.append(letter + leaf)
 
-
-                #print("letter: ", letter)
-                
-                #suffix = suffix + letter + complete_prefix(trie[letter])[0]
-                #print("suffix: ", suffix)
-                #completions_list.append(suffix)
-                #print("list: ", completions_list)
-                #print("---------------------------")
-                 
-
     
         return completions_list
-
-
-
-
-
-
-   
-
-
-    #letters_only = {letter: prefix[letter] for k in ('l', 'm', 'n')}
-    
-    #for letter in prefix.keys():
-
 
 
 
