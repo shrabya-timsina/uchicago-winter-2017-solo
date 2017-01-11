@@ -80,7 +80,7 @@ def complete_prefix(trie):
     
 
 
-    if trie['final'] == True:
+    if trie['final'] == True and trie['count'] == 1:
         return [""]
 
     else:
@@ -91,11 +91,12 @@ def complete_prefix(trie):
         letters = [key for key in trie.keys() if key not in exclude_keys]
 
         for letter in letters:
+            print("letter: ", letter)
             suffix = ""
             suffix = suffix + letter + complete_prefix(trie[letter])[0]
-            #print(suffix)
+            print("suffix: ", suffix)
             completions_list.append(suffix)
-            suffix = ""
+            print("list: ", completions_list)
 
     
     return completions_list
