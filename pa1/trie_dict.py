@@ -17,16 +17,13 @@ import trie_shell
 def create_trie_node():
     """
     creates a new node for a trie
-    
     returns: a dictionary with keys 'count' and 'final'
     """
     return {'count': 0, 'final' : False }
 
 def add_word(word, trie):
-
     """
     adds a word to a given trie
-    
     inputs: word - a string which contains the word to be added
             trie - a dictionary to which the word is added
     """
@@ -42,15 +39,11 @@ def add_word(word, trie):
     
     return add_word(word[1:], trie[word[0]])
 
-    
-
 def is_word(word, trie):
     """
     verifies if given word is a complete word in the given trie
-    
     inputs: word - a string which contains the word to be verified
             trie - a dictionary to search through for given word
-
     returns - a boolean - stating whether the word is a complete word
     """ 
 
@@ -73,7 +66,6 @@ def num_completions(prefix, trie):
     inputs: prefix - a string which contains the prefix whose
                      number of completions are to be calculated
             trie - a dictionary to search through for completions count
-    
     returns - an integer - value for the key 'count' for trie of given prefix
     """ 
 
@@ -87,7 +79,6 @@ def num_completions(prefix, trie):
         return trie[prefix]['count']
 
     return num_completions(prefix[1:], trie[prefix[0]])
-   
 
 def get_completions(prefix, trie):
     """
@@ -97,11 +88,9 @@ def get_completions(prefix, trie):
     inputs: prefix - a string which contains the prefix whose
                      word-forming suffixes are to be found
             trie - a dictionary to search through for valid suffixes
-    
     returns - a list - containing all valid suffixes of the prefix
                        or empty list if there are no valif suffixes
     """ 
-
     #locating trie of prefix containing all possible suffixes
     prefix_trie = get_to_prefix_node(prefix, trie)
 
@@ -110,9 +99,6 @@ def get_completions(prefix, trie):
 
     else:
         return complete_prefix(prefix_trie)
-
-  
-    
 
 def get_to_prefix_node(prefix, trie):
     """
@@ -133,7 +119,6 @@ def get_to_prefix_node(prefix, trie):
         return get_to_prefix_node(prefix[1:], trie[prefix[0]])
 
 def complete_prefix(trie):
-
     """
     helper function to find list of valid suffixes within
     the trie of the given prefix
@@ -149,24 +134,15 @@ def complete_prefix(trie):
         if trie['count'] > 1 and trie['final'] == True:
             completions_list.append("")
                 
-        
         exclude_keys = ['count', 'final']
         #making list to  loop only through  keys that are letters
         letters = [key for key in trie.keys() if key not in exclude_keys]
         #case where there are subtries:                 
         for letter in letters:
-       
             for leaf in complete_prefix(trie[letter]):
-
                 completions_list.append(letter + leaf)
-
     
         return completions_list
-
-
-
-
-
 
 if __name__ == "__main__":
     trie_shell.go("trie_dict")
