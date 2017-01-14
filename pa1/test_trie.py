@@ -12,6 +12,9 @@ add_word("an", t)
 add_word("and", t)
 add_word("are", t) 
 add_word("bee", t)
+add_word("be", t)
+add_word("z", t)
+
 
 # Write your tests here
 
@@ -28,5 +31,5 @@ print(num_completions("are", t))
 print(num_completions("bee", t))
 """
 
-prefix_dict = get_to_prefix_node("z", t)
+prefix_dict = get_to_prefix_node("b", t)
 print(prefix_dict)
