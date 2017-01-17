@@ -39,6 +39,49 @@ reduce the soup to blocks of texts of classes
 
 ### YOUR FUNCTIONS HERE
 
+url_q = queue.Queue(maxsize = 1000)
+starting_url = "http://www.classes.cs.uchicago.edu/archive/2015/winter/12200-1/new.collegecatalog.uchicago.edu/index.html"
+limiting_domain = "cs.uchicago.edu"
+
+def crawler(url_q, starting_url, limiting_domain):
+    soup = convert_to_soup(starting_url)
+    tag_list = soup.find_all('a', href=True)
+    for tag in tag_list:
+        url = extract_url(tag, starting_url)
+        if url is not None:
+            if util.is_url_ok_to_follow(url, limiting_domain):
+                url_q.put(url)
+                return crawler(url_q, url, limiting_domain)
+
+    return url_q
+
+def init_q(starting_url, limiting_domain):
+    '''
+    Given a url, will initialize a queue containing urls of linked webpages
+    '''
+    url_q = queue.Queue(maxsize = 1000)
+    soup = convert_to_soup(starting_url)
+    tag_list = soup.find_all('a', href=True)
+    
+    for tag in tag_list:
+        url = extract_url(tag, starting_url)
+        if url is not None:
+            if is_url_ok_to_follow(url, limiting_domain):
+                url_q.put(url)
+    
+def extract_url(tag, absolute_url):
+    '''
+    Given a tag with href=True, will return an absolute url of the tag
+    '''
+    #assert tag's href not None
+    url = tag.get('href')
+    url = util.remove_fragment(url)
+    url = util.convert_if_relative_url(absolute_url, url)
+    return url
+
+
+
+
 
 def convert_to_soup(url):
 
