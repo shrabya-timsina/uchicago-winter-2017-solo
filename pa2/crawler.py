@@ -39,21 +39,40 @@ reduce the soup to blocks of texts of classes
 
 ### YOUR FUNCTIONS HERE
 
-url_q = queue.Queue(maxsize = 1000)
+
 starting_url = "http://www.classes.cs.uchicago.edu/archive/2015/winter/12200-1/new.collegecatalog.uchicago.edu/index.html"
 limiting_domain = "cs.uchicago.edu"
 
-def crawler(url_q, starting_url, limiting_domain):
-    soup = convert_to_soup(starting_url)
-    tag_list = soup.find_all('a', href=True)
-    for tag in tag_list:
-        url = extract_url(tag, starting_url)
-        if url is not None:
-            if util.is_url_ok_to_follow(url, limiting_domain):
-                url_q.put(url)
-                return crawler(url_q, url, limiting_domain)
+def crawler(starting_url, limiting_domain):
+    
+    urls_to_crawl = queue.Queue(maxsize = 1000)
+    urls_crawled = set()
+    
+    urls_to_crawl.put(starting_url)
 
-    return url_q
+    
+    while urls_to_crawl.empty() == False and len(urls_crawled) < 1000:
+        next_to_crawl = urls_to_crawl.get()
+
+        soup = convert_to_soup(next_to_crawl)
+        
+        ## indexer here
+        
+        urls_crawled.add(next_to_crawl)
+
+        list_of_urls_in_page = soup.find_all('a', href=True)
+        
+        for link in list_of_urls_in_page:
+        
+            url = extract_url(link, next_to_crawl)
+            if url is not None:
+                if url not in urls_crawled:
+                    if util.is_url_ok_to_follow(url, limiting_domain):
+                        urls_to_crawl.put(url)
+
+    return urls_crawled
+
+    
 
 def init_q(starting_url, limiting_domain):
     '''
