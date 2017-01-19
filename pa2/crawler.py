@@ -40,11 +40,11 @@ reduce the soup to blocks of texts of classes
 ### YOUR FUNCTIONS HERE
 
 
-starting_url = "http://www.classes.cs.uchicago.edu/archive/2015/winter/12200-1/new.collegecatalog.uchicago.edu/index.html"
-limiting_domain = "classes.cs.uchicago.edu"
+#starting_url = "http://www.classes.cs.uchicago.edu/archive/2015/winter/12200-1/new.collegecatalog.uchicago.edu/index.html"
+#limiting_domain = "classes.cs.uchicago.edu"
 
 def crawler(starting_url, limiting_domain, course_map_filename):
-    course_map_filename = 'course_map.json'
+    #course_map_filename = 'course_map.json'
     course_code_identifier_map = open_json_key(course_map_filename)
 
     urls_to_crawl = queue.Queue()
@@ -149,7 +149,7 @@ def build_dict(soup, index_dictionary, course_code_identifier_map):
 
         if course_block_title is not None:
             
-            words_in_title = get_words_from_title(course_block_title.text)
+            words_in_title = get_words_from_text(course_block_title.text)
             
             if course_description is None:
                 words_in_description = []
@@ -175,7 +175,7 @@ def build_dict(soup, index_dictionary, course_code_identifier_map):
                                   
                     subsequence_identifier = get_course_identifier(subsequence_title.text, course_code_identifier_map)
 
-                    words_in_subseq_title = get_words_from_title(subsequence_title.text)
+                    words_in_subseq_title = get_words_from_text(subsequence_title.text)
                     if subsequence_description is None:
                         words_in_subseq_description = []
                     else:
@@ -203,10 +203,10 @@ def get_words_from_text(text_block):
     words = re.findall(words_pattern, text_block)
     return words
 
-def get_words_from_title(course_code_and_title):
-    words_in_title = get_words_from_text(course_code_and_title)
-    words_in_title = words_in_title[1:] #removing first word which is part of course code
-    return words_in_title
+#def get_words_from_title(course_code_and_title):
+   # words_in_title = get_words_from_text(course_code_and_title)
+    #words_in_title = words_in_title[1:] #removing first word which is part of course code
+   # return words_in_title
 
 def open_json_key(course_map_filename):
     with open(course_map_filename) as json_data:
@@ -214,8 +214,12 @@ def open_json_key(course_map_filename):
     return course_number_data
 
 
-
-
+def write_to_file(course_dict):
+    with open('catalog-index.csv', 'w') as csvfile:
+        writer = csv.writer(csvfile, delimiter='|')
+        for identifier in course_dict:
+            for words in course_dict[identifier]:
+                writer.writerow([identifier, words])
 
 def go(num_pages_to_crawl, course_map_filename, index_filename):
     '''
@@ -232,9 +236,12 @@ def go(num_pages_to_crawl, course_map_filename, index_filename):
     '''
 
     starting_url = "http://www.classes.cs.uchicago.edu/archive/2015/winter/12200-1/new.collegecatalog.uchicago.edu/index.html"
-    limiting_domain = "cs.uchicago.edu"
+    limiting_domain = "classes.cs.uchicago.edu"
 
-    # YOUR CODE HERE
+    course_words_index = crawler(starting_url, limiting_domain, course_map_filename)
+    write_to_file(course_words_index)
+
+
 
 
 if __name__ == "__main__":
