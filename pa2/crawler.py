@@ -221,6 +221,14 @@ def write_to_file(course_dict):
             for words in course_dict[identifier]:
                 writer.writerow([identifier, words])
 
+def alphabetize():
+
+    with open('catalog-index.csv') as csvfile:
+        reader = csv.DictReader(csvfile)
+
+        zz = sorted(reader,
+                key=lambda k: (k['words'], k['identifier']))
+
 def go(num_pages_to_crawl, course_map_filename, index_filename):
     '''
     Crawl the college catalog and generates a CSV file with an index.
