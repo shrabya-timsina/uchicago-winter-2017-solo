@@ -1,0 +1,33 @@
+Points:
+    Test cases:
+        Points Possible: 25
+        Points Obtained: 25
+
+    Code structure and style:
+        Points Possible: 20
+        Points Obtained: 18
+
+    create_trie_node:
+        Points Possible: 3
+        Points Obtained: 3
+
+    add_word:
+        Points Possible: 12
+        Points Obtained: 12
+
+    is_word:
+        Points Possible: 10
+        Points Obtained: 10
+
+    num_completions:
+        Points Possible: 10
+        Points Obtained: 10
+
+    get_completions:
+        Points Possible: 20
+        Points Obtained: 20
+
+Total Points: 98 / 100
+
+Comments: >
+    Excellent work!

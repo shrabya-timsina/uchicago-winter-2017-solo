@@ -105,6 +105,7 @@ def get_to_prefix_node(prefix, trie):
     helper function to locate trie containing
     all possible suffixes within the larger trie
     """
+    ### GRADER COMMENT:Excellent choice of helper function!
     
     if not prefix: #case where prefix is an empty string 
         return trie
@@ -134,7 +135,10 @@ def complete_prefix(trie):
         if trie['count'] > 1 and trie['final'] == True:
             completions_list.append("")
                 
-        exclude_keys = ['count', 'final']
+        exclude_keys = ['count', 'final'] ### GRADER COMMENT: You should have just used an if statement
+                                          ### I note that you do this to use list comprehension; that's okay, but 
+                                          ### it does make the code slower to have to check within a list.
+                                          ### PENALTY (STYLE): -2
         #making list to  loop only through  keys that are letters
         letters = [key for key in trie.keys() if key not in exclude_keys]
         #case where there are subtries:                 
