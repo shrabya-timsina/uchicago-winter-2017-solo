@@ -14,6 +14,11 @@ class Markov:
         Construct a new k-order Markov model using the statistics of string "s"
         '''
         ### YOUR CODE HERE ###
+        #self.k = k
+        #self.s = s
+        self.gram_counts = self.get_gram_count_table(s, k)
+
+
 
 
     def log_probability(self,s):
@@ -22,7 +27,51 @@ class Markov:
         character sequences modeled by this particular Markov model
         This probability is *not* normalized by the length of the string.
         '''
-        ### YOUR CODE HERE ###
+        for character in s:
+            k_gram = s[-k+i:] + s[:i]
+            kplus_gram = s[-k+i:] + s[:i+1]
+
+            k_count = self.gram_counts.lookup()
+
+
+
+def get_gram_count_table(s, k):
+
+    gram_count_table = Hash_Table.Hash_Table(HASH_CELLS, 0)
+    for i, character in enumerate(s):
+        if i < k:
+            k_gram = s[-k+i:] + s[:i]
+            kplus_gram = s[-k+i:] + s[:i+1]
+        else:
+            k_gram = s[i-k:i]
+            kplus_gram = s[i-k:i+1]
+
+        #print(k_gram)
+        #print(kplus_gram)
+    
+        k_gram_count = gram_count_table.lookup(k_gram)
+
+        #if k_gram_count == gram_count_table.defval:
+        #    gram_count_table.update(k_gram, 1)
+        #else:
+        gram_count_table.update(k_gram, k_gram_count+1)
+
+        kplus_gram_count = gram_count_table.lookup(kplus_gram)
+
+        #if kplus_gram_count == gram_count_table.defval:
+        #   gram_count_table.update(kplus_gram, 1)
+        #else:
+        gram_count_table.update(kplus_gram, kplus_gram_count+1)
+
+    return gram_count_table
+
+
+s= "As a result of securing ourselves and ridding the Taliban out of Afghanistan, the Afghan people"
+#s = "the three trees there"
+k=2
+
+
+
 
 
 def identify_speaker(speech1, speech2, speech3, order):
@@ -49,6 +98,7 @@ def print_results(res_tuple):
 
     print("Conclusion: Speaker " + conclusion + " is most likely")
 
+"""
 
 if __name__=="__main__":
     num_args = len(sys.argv)
@@ -72,3 +122,4 @@ if __name__=="__main__":
 
     print_results(res_tuple)
 
+"""
