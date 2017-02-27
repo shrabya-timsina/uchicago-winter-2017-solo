@@ -1,6 +1,5 @@
 # CS122 W'17: Markov models and hash tables
-# YOUR NAME HERE
-
+# Shrabya Timsina 
 
 TOO_FULL = 0.5
 GROWTH_RATIO = 2
@@ -63,22 +62,17 @@ class Hash_Table:
         else:
             
             while self.table[hash_val][0] is not None:
-                #print(hash_val)
-                #print(self.table[hash_val])
+
                 if hash_val == (len(self.table) - 1):
                     hash_val = -1 #to reset index to 0 after end has been reached
                 hash_val = hash_val + 1
-                #print(hash_val)
 
             self.table[hash_val] = (key, val)
             self.num_of_keys += 1
 
-        #print(self.table)
 
         if (self.num_of_keys/len(self.table)) > TOO_FULL:
             self.rehash_after_full()
-
-
                 
     def hashing_function(self, key):
         hash_val = 0
@@ -99,7 +93,6 @@ class Hash_Table:
 
 z = Hash_Table(4, 0)
 z.update("d", "hel")
-z.update('datboi', 'hello')
 z.update("s", "t")
 z.update("yo waddup", "zzz")
 z.update("sss", "aaa")
