@@ -13,6 +13,11 @@ class Hash_Table:
         parameter "cells", and which yields the value defval upon a lookup to a
         key that has not previously been inserted
         '''
+        assert cells > 0, \
+            "number of cells must be positive"
+        assert isinstance(cells, int), \
+            "number of cells must be an integer"
+
         self.defval = defval
         self.table = [(None, None)] * cells
         self.num_of_keys = 0 
