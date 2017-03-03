@@ -1,0 +1,61 @@
+Test 0: 
+Speaker A: speeches/bush1+2.txt
+Speaker B: speeches/kerry1+2.txt
+Identify : speeches/bush-kerry3/BUSH-0.txt
+k = 2
+Unnormalized: (-3189.9110386521997, -3291.927333729773, 'A')
+Correct     : (-2.1670591295191572, -2.2363636778055525, 'A')
+Your result : (-2.1670591295191577, -2.236363677805553, 'A')
++1: Correct conclusion
++2: Probabilities correct to five decimal places
+=3
+
+Test 1: 
+Speaker A: speeches/bush1+2.txt
+Speaker B: speeches/kerry1+2.txt
+Identify : speeches/bush-kerry3/KERRY-0.txt
+k = 2
+Unnormalized: (-4298.457594815359, -4109.4075070585895, 'B')
+Correct     : (-2.250501358542073, -2.151522255004497, 'B')
+Your result : (-2.250501358542073, -2.151522255004497, 'B')
++1: Correct conclusion
++2: Probabilities correct to five decimal places
+=3
+
+Test 2: 
+Speaker A: speeches/bush1+2.txt
+Speaker B: speeches/kerry1+2.txt
+Identify : speeches/bush-kerry3/BUSH-10.txt
+k = 1
+Unnormalized: (-3157.047551969511, -3186.5480851939496, 'A')
+Correct     : (-2.4587597756771893, -2.4817352688426397, 'A')
+Your result : (-2.4587597756771893, -2.4817352688426397, 'A')
++1: Correct conclusion
++2: Probabilities correct to five decimal places
+=3
+
+Test 3: 
+Speaker A: speeches/bush1+2.txt
+Speaker B: speeches/kerry1+2.txt
+Identify : speeches/bush-kerry3/KERRY-20.txt
+k = 0
+Unnormalized: (-72.36493750646078, -72.48233328595842, 'A')
+Correct     : (-3.2893153412027627, -3.2946515129981098, 'A')
+Your result : (3.562927227849116, 3.6372699242321533, 'B')
+ 0: Incorrect conclusion
+ 0: Incorrect probabilities
+=0
+
+Test 4: 
+Speaker A: speeches/obama1+2.txt
+Speaker B: speeches/mccain1+2.txt
+Identify : speeches/obama-mccain3/OBAMA-15.txt
+k = 3
+Unnormalized: (-3195.5319131682945, -3443.5483415305766, 'A')
+Correct     : (-2.138910249777975, -2.3049185686282305, 'A')
+Your result : (-2.138910249777975, -2.3049185686282305, 'A')
++1: Correct conclusion
++2: Probabilities correct to five decimal places
+=3
+
+=== TOTAL TESTING SCORE: 12 / 15
