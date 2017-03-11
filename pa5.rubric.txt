@@ -1,0 +1,29 @@
+Points:
+    Log probability:
+        Points Possible: 10
+        Points Obtained: 8
+
+    Training model:
+        Points Possible: 10
+        Points Obtained: 10
+
+    Rehashing:
+        Points Possible: 10
+        Points Obtained: 10
+
+    Hash operations:
+        Points Possible: 25
+        Points Obtained: 25
+
+    Code structure and style:
+        Points Possible: 30
+        Points Obtained: 30
+
+    Test cases:
+        Points Possible: 15
+        Points Obtained: 12
+
+Total Points: 95 / 100
+
+Comments: >
+    Overall, excellent work on the PA -- you missed one test case, and the problem might lie with not normalizing the probabilities correctly in your Markov.py. However, your hash table was very well constructed, and everything else checked out well.

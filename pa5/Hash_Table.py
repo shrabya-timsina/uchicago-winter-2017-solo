@@ -15,7 +15,7 @@ class Hash_Table:
         assert cells > 0, \
             "number of cells must be positive"
         assert isinstance(cells, int), \
-            "number of cells must be an integer"
+            "number of cells must be an integer" ### GRADER COMMENT: Not necessary for this PA. Good for testing purposes though!
 
         self.defval = defval
         self.table = [(None, None)] * cells #table is a list of (key, value) tuples
